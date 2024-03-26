@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Play Action Football Game Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="app">
+  <!-- dice roller view-->
+  <div class="dice-roller" hidden="hidden">
+    <footer class="universal-footer">
+      <div class="universal-footer-inner">
+        <article class="link dice-roller-link">
+          <p><span><i class="zmdi zmdi-n-1-square"></i><i class="zmdi zmdi-n-6-square"></i></span> Dice Roller</p>
+        </article>
+        <article class="link game-simulator-link">
+          <p><span><i class="zmdi zmdi-play-circle"></i></span> Game Simulator</p>
+        </article>
+      </div>
+    </footer>
+    <!-- header-->
+    <header class="scoreboard">
+      <article class="visitor">
+        <p class="label">Visitor</p>
+        <p class="score"><span class="visitor-minus"><i class="zmdi zmdi-minus-circle-outline"></i></span> <span class="visitor-score">0</span> <span class="visitor-plus"><i class="zmdi zmdi-plus-circle"></i></span></p>
+      </article>
+      <article class="home">
+        <p class="label">Home</p>
+        <p class="score"><span class="home-minus"><i class="zmdi zmdi-minus-circle-outline"></i></span> <span class="home-score">0</span> <span class="home-plus"><i class="zmdi zmdi-plus-circle"></i></span></p>
+      </article>
+    </header>
+    <!-- main rolls-->
+    <section class="main-rolls">
+      <article class="offense full-width">
+        <p class="label">Offense</p>
+        <p class="roll-value offense-roll"> </p>
+      </article>
+      <article class="defense full-width">
+        <p class="label">Defense</p>
+        <p class="roll-value defense-roll"> </p>
+      </article>
+      <article class="play-result full-width">
+        <p class="label">Play Result</p>
+        <p class="roll-value play-result-roll"> </p>
+      </article>
+      <article class="player full-width">
+        <p class="label">Player</p>
+        <p class="roll-value player-roll"> </p>
+      </article>
+    </section>
+    <!-- secondary rolls-->
+    <section class="secondary-rolls">
+      <article class="d10 full-width">
+        <p class="label">d10</p>
+        <p class="roll-value d10-roll"> </p>
+      </article>
+      <article class="d6 full-width">
+        <p class="label">d6</p>
+        <p class="roll-value d6-roll"></p>
+      </article>
+      <article class="d10-plus-d10 full-width">
+        <p class="label">d10 + d10</p>
+        <p class="roll-value d10-plus-d10-roll"> </p>
+      </article>
+      <article class="d6-plus-d6 full-width">
+        <p class="label">d6 + d6</p>
+        <p class="roll-value d6-plus-d6-roll"> </p>
+      </article>
+      <article class="d10-plus-d6 full-width">
+        <p class="label">d10 + d6</p>
+        <p class="roll-value d10-plus-d6-roll"></p>
+      </article>
+    </section>
+    <footer class="roll">
+      <button id="primaryroll">Roll</button>
+    </footer>
+  </div>
+  <!-- game simulator view    -->
+  <div class="game-simulator" hidden="hidden">
+    <footer class="universal-footer">
+      <div class="universal-footer-inner">
+        <article class="link dice-roller-link">
+          <p><span><i class="zmdi zmdi-n-1-square"></i><i class="zmdi zmdi-n-6-square"></i></span> Dice Roller</p>
+        </article>
+        <article class="link game-simulator-link">
+          <p><span><i class="zmdi zmdi-play-circle"></i></span> Game Simulator</p>
+        </article>
+      </div>
+    </footer>
+    <!-- team inputs-->
+    <section class="team-inputs">
+      <p class="inputs visitor-inputs">Visitor
+        <select class="visitor-offense">
+          <option selected="selected" disabled="disabled" hidden="hidden">Off</option>
+          <option>3</option>
+          <option>2</option>
+          <option>1</option>
+          <option>0</option>
+        </select>
+        <select class="visitor-defense">
+          <option selected="selected" disabled="disabled" hidden="hidden">Def</option>
+          <option>-3</option>
+          <option>-2</option>
+          <option>-1</option>
+          <option>0</option>
+        </select>
+      </p>
+      <p class="inputs home-inputs">Home
+        <select class="home-offense">
+          <option selected="selected" disabled="disabled" hidden="hidden">Off</option>
+          <option>3</option>
+          <option>2</option>
+          <option>1</option>
+          <option>0</option>
+        </select>
+        <select class="home-defense">
+          <option selected="selected" disabled="disabled" hidden="hidden">Def</option>
+          <option>-3</option>
+          <option>-2</option>
+          <option>-1</option>
+          <option>0</option>
+        </select>
+      </p>
+    </section>
+    <!-- scoring grid-->
+    <section class="scoring-grid">
+      <article class="header"></article>
+      <article class="header"> 
+        <p>Visitor</p>
+      </article>
+      <article class="header"> 
+        <p>Home</p>
+      </article>
+      <article class="possession-number"> 
+        <p>1</p>
+      </article>
+      <article class="visitor pos-1">
+        <p></p>
+      </article>
+      <article class="home pos-1">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>2</p>
+      </article>
+      <article class="visitor pos-2">
+        <p></p>
+      </article>
+      <article class="home pos-2">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>3</p>
+      </article>
+      <article class="visitor pos-3">
+        <p></p>
+      </article>
+      <article class="home pos-3">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>4</p>
+      </article>
+      <article class="visitor pos-4">
+        <p></p>
+      </article>
+      <article class="home pos-4">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>5</p>
+      </article>
+      <article class="visitor pos-5">
+        <p></p>
+      </article>
+      <article class="home pos-5">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>6</p>
+      </article>
+      <article class="visitor pos-6">
+        <p></p>
+      </article>
+      <article class="home pos-6">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>7</p>
+      </article>
+      <article class="visitor pos-7">
+        <p></p>
+      </article>
+      <article class="home pos-7">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>8</p>
+      </article>
+      <article class="visitor pos-8">
+        <p></p>
+      </article>
+      <article class="home pos-8">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>9</p>
+      </article>
+      <article class="visitor pos-9">
+        <p></p>
+      </article>
+      <article class="home pos-9">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>10</p>
+      </article>
+      <article class="visitor pos-10">
+        <p></p>
+      </article>
+      <article class="home pos-10">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>11</p>
+      </article>
+      <article class="visitor pos-11">
+        <p></p>
+      </article>
+      <article class="home pos-11">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>12</p>
+      </article>
+      <article class="visitor pos-12">
+        <p></p>
+      </article>
+      <article class="home pos-12">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>13</p>
+      </article>
+      <article class="visitor pos-13">
+        <p></p>
+      </article>
+      <article class="home pos-13">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>14</p>
+      </article>
+      <article class="visitor pos-14">
+        <p></p>
+      </article>
+      <article class="home pos-14">
+        <p></p>
+      </article>
+      <article class="possession-number"> 
+        <p>15</p>
+      </article>
+      <article class="visitor pos-15">
+        <p></p>
+      </article>
+      <article class="home pos-15">
+        <p></p>
+      </article>
+    </section>
+    <!-- quarter by quarter scoring-->
+    <section class="scoring-quarters">
+      <article class="visitor-label">
+        <p>V</p>
+      </article>
+      <article class="home-label">
+        <p>H</p>
+      </article>
+      <article class="visitor visitor-q1">
+        <p>0</p>
+      </article>
+      <article class="home home-q1">
+        <p>0</p>
+      </article>
+      <article class="visitor visitor-q2">
+        <p>0</p>
+      </article>
+      <article class="home home-q2">
+        <p>0</p>
+      </article>
+      <article class="visitor visitor-q3">
+        <p>0</p>
+      </article>
+      <article class="home home-q3">
+        <p>0</p>
+      </article>
+      <article class="visitor visitor-q4">
+        <p>0</p>
+      </article>
+      <article class="home home-q4">
+        <p>0</p>
+      </article>
+      <article class="visitor visitor-OT">
+        <p>0</p>
+      </article>
+      <article class="home home-OT">
+        <p>0</p>
+      </article>
+      <article class="visitor visitor-final">
+        <p>0</p>
+      </article>
+      <article class="home home-final">
+        <p>0</p>
+      </article>
+    </section>
+    <footer class="roll">
+      <button id="roll">Sim Game</button>
+      <button id="overtime" hidden="hidden">Sim Overtime</button>
+      <button id="reset" hidden="hidden">Reset Game</button>
+    </footer>
+  </div>
+</div>
+<div class="splash" hidden="hidden">
+  <div class="splash-inner">
+    <section class="logo"><img src="https://i.imgur.com/ZvVndHR.jpg"/></section>
+    <section class="choose-application">
+      <button id="diceroller">Dice Roller</button>
+      <button id="gamesimulator">Game Simulator</button>
+    </section>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
